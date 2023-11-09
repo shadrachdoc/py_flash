@@ -26,10 +26,18 @@ jobs:
       with:
         creds: ${{ secrets.SECRET_AZURE_CRE }}
     - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.0.0
-          
-    - name: Terraform init
-      run: terraform init
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
 
+      - name: Authenticate using Service Principal
+        run: |
+          export ARM_CLIENT_ID=${{ secrets.CLIENTID }}
+          export ARM_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}
+          export ARM_TENANT_ID=${{ secrets.TENANT_ID }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
