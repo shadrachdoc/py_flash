@@ -29,12 +29,9 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.0.0
-
     - name: Authenticate using Service Principal
       run: |
-        export ARM_CLIENT_ID=${{ secrets.CLIENTID }}
-        export ARM_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}
-        export ARM_TENANT_ID=${{ secrets.TENANT_ID }}
+      terraform login -ex ${{ secrets.CLIENTID }} -p ${{ secrets.CLIENT_SECRET }} -t ${{ secrets.TENANT_ID }}
 
     - name: Terraform Init
       run: terraform init
