@@ -20,7 +20,9 @@ jobs:
       run: docker login -u ${{ secrets.DOCKER_USERNAME}} -p ${{ secrets.DOCKER_PASSWORD}}
 
     - name: Tag Docker image
-      run: docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
+      run:|
+       docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
+       docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:latest 
 
     - name: Push Docker image
       run: docker push '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
@@ -53,6 +55,5 @@ jobs:
         ARM_CLIENT_ID: ${{ secrets.CLIENTID }}
         ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}   
         ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
-        TF_LOG: "DEBUG"    
       run: terraform apply -auto-approve
    
