@@ -12,7 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
+    - name: Navigate to py_flash directory
+      run: cd py_flash
     - name: Build Docker image
       run: docker build -t crud-api:'${{github.sha}}' .
 
