@@ -1,6 +1,10 @@
 provider "azurerm" {
   features {}
   skip_provider_registration = true
+  subscription_id = "a91cea01-b1f8-4d11-9f50-cf8f60b7738f"
+  client_id       = "87d6931c-b35a-4c53-a256-f16591ed03cc"
+  client_secret   = "z9B8Q~S_fbbNyg4tDD-cJuArqB3r_STcFz~R0bJZ"
+  tenant_id       = "e9f7a4c3-63b2-4c54-bec6-44e0a3d57c74"
 }
 
 resource "azurerm_resource_group" "pygrp" {
