@@ -16,3 +16,10 @@ jobs:
     - name: Build Docker image
       run: docker build -t crud-api:${{github.sha}} -f py_flash/Dockerfile .
 
+    - name: Log in to Docker Hub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME}} -p ${{ secrets.DOCKER_PASSWORD}}
+    - name: tag docker image
+      run: docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
+    - name: Push Docker image
+      run: docker push '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
+
