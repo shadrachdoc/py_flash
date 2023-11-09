@@ -7,7 +7,7 @@ provider "azurerm" {
   tenant_id       = var.tenant_id
 }
 
-resource "azurerm_resource_group" "pygrp" {
+resource  "azurerm_resource_group" "pygrp" {
   name     = "myResourceGroup"
   location = "East US" # Change to your desired Azure region
 }
