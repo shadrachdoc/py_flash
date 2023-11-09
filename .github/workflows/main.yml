@@ -29,12 +29,6 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.0.0
-    - name: Authenticate using Service Principal
-      run: |
-        terraform login -ex ${{ secrets.CLIENTID }} -p ${{ secrets.CLIENT_SECRET }} -t ${{ secrets.TENANT_ID }}
-
-    - name: Terraform Init
+          
+    - name: Terraform init
       run: terraform init
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
