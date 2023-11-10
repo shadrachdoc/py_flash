@@ -11,5 +11,11 @@ variable "client_secret" {
 }
 
 variable "tenant_id" {
-  type = string 
+  type = string
+}
+variable "username" {
+  type = string
+}
+variable "password" {
+  type = string
 }
