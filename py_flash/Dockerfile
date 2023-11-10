@@ -9,8 +9,8 @@ USER app
 RUN apk add --no-cache gcc libc-dev linux-headers
 
 # Copy requirements and install
+COPY ./py_flash /app
 WORKDIR /app
-COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy app source last for better caching
