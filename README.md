@@ -7,9 +7,9 @@ This repository contains Terraform scripts to deploy an Azure infrastructure wit
 - Subnets
 - Public IP
 - Network Interface
-- Linux Virtual Machine
+- Linux Virtual Machine (private access)
 - Bastion Host
-- Application Gateway
+- Application Gateway (Public access)
 
 ## Prerequisites
 
@@ -17,7 +17,12 @@ Before you begin, ensure you have the following:
 
 - [Terraform](https://www.terraform.io/downloads.html) installed
 - Azure subscription and necessary permissions
-- Docker installed on the Virtual Machine
+- SP account should have storage account permisssion as terraform statefile is storing in Azure storage
+   ```bash
+   az role assignment create \
+     --role "Storage Blob Data Contributor" \
+     --assignee "<clientId>" \
+     --scope "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Storage/storageAccount
 
 ## Usage
 
@@ -27,4 +32,4 @@ Before you begin, ensure you have the following:
 - Trigger the pipeline in Github action
 - Once the pipeline completed successfully we can get Application Gateway public IP from pipeline console log to access the Docker image py flash page
 - web access procedure 
-    https://<public IP>:5000
+    https://public IP:5000

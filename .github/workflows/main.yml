@@ -21,8 +21,8 @@ jobs:
 
     - name: Tag Docker image
       run: |
+        docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:latest
         docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
-        docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:latest 
 
     - name: Push Docker image
       run: docker push '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
