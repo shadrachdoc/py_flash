@@ -9,7 +9,7 @@ provider "azurerm" {
 
 resource  "azurerm_resource_group" "pygrp" {
   name     = "myResourceGroup"
-  location = "East US" # Change to your desired Azure region
+  location = "East US" 
 }
 
 resource "azurerm_virtual_network" "pyvnet" {
@@ -58,7 +58,7 @@ resource "azurerm_linux_virtual_machine" "pyvm" {
   resource_group_name             = azurerm_resource_group.pygrp.name
   size                            = "Standard_DS1_v2"
   admin_username                  = "adminuser"
-  admin_password                  = "Password1234!" # Change to your desired password
+  admin_password                  = "Password1234!"
   disable_password_authentication = false
   network_interface_ids           = [azurerm_network_interface.pyint.id]
 

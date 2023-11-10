@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Flask inside Docker!!"
+    return "Hello I am from Docker image inside  Azure vm"
 
 
 if __name__ == "__main__":
