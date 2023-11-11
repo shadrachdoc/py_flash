@@ -22,9 +22,16 @@ jobs:
     - name: Tag Docker image
       run: |
         docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
+        docker tag py_flash:'${{github.sha}}' '${{ secrets.DOCKER_USERNAME }}'/py_flash:latest
 
     - name: Push Docker image
-      run: docker push '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
+      run: |
+        docker push '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
+        docker push '${{ secrets.DOCKER_USERNAME }}'/py_flash:latest
+    -  name: Scan for vulnerabilities
+        uses: crazy-max/ghaction-container-scan@v3
+        with:
+          image: '${{ secrets.DOCKER_USERNAME }}/py_flash:${{github.sha}}' 
 
     - uses: azure/login@v1
       with:
