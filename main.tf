@@ -91,8 +91,8 @@ resource "azurerm_linux_virtual_machine" "pyvm" {
     apt-get install -y docker.io
     systemctl start docker
     systemctl enable docker
-    sudo docker pull shadrach85/py_flash:4020d04f17347305bc7ade52b72f170077d221a6
-    sudo docker run -d -p 5000:5000 shadrach85/py_flash:4020d04f17347305bc7ade52b72f170077d221a6
+    sudo docker pull shadrach85/py_flash:latest
+    sudo docker run -d -p 5000:5000 shadrach85/py_flash:latest
     EOF
   )
 }
