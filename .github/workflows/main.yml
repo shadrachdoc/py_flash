@@ -29,9 +29,9 @@ jobs:
         docker push '${{ secrets.DOCKER_USERNAME }}'/py_flash:'${{github.sha}}'
         docker push '${{ secrets.DOCKER_USERNAME }}'/py_flash:latest
     -  name: Scan for vulnerabilities
-        uses: crazy-max/ghaction-container-scan@v3
-        with:
-          image: '${{ secrets.DOCKER_USERNAME }}/py_flash:${{github.sha}}' 
+       uses: crazy-max/ghaction-container-scan@v3
+       with:
+         image: '${{ secrets.DOCKER_USERNAME }}/py_flash:${{github.sha}}' 
 
     - uses: azure/login@v1
       with:
